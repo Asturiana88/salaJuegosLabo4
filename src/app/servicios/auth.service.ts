@@ -54,6 +54,7 @@ export class AuthService {
         /* Call the SendVerificaitonMail() function when new user sign
         up and returns promise */
         this.SetUserData(result.user);
+        alert('Account creation succeed')
       }).catch((error:any) => {
         window.alert(error.message)
       })
