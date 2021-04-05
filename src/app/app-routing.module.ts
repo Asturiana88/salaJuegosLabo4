@@ -8,23 +8,23 @@ import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 
 const routes: Routes = [
-  { 
+  {
     path: "charla", component: ChatComponent,
   },
-  { 
+  {
     path: "listado", component: ListadoComponent,
-  }, 
-  { 
-    path: 'usuario', component: UsuarioComponent 
   },
-  { 
-    path: 'login', component: LoginComponent 
+  {
+    path: 'usuario', component: UsuarioComponent
   },
-  { 
-    path: 'home', component: HomeComponent 
+  {
+    path: 'login', component: LoginComponent
   },
-  { 
-    path: 'quien-soy', component: QuienSoyComponent 
+  {
+    path: '', component: HomeComponent
+  },
+  {
+    path: 'quien-soy', component: QuienSoyComponent
   }
 ];
 
