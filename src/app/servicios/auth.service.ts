@@ -23,10 +23,13 @@ export class AuthService {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
+        const userData = localStorage.getItem('user')
+        if (userData){
+          JSON.parse(userData);
+        }
       } else {
-        localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
+        localStorage.setItem('user', "");
+        JSON.parse("");
       }
     })
   }
@@ -58,7 +61,9 @@ export class AuthService {
 
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const userData = localStorage.getItem('user')
+    if (!userData) return false
+    const user = JSON.parse(userData);
     return (user !== null && user.emailVerified !== false) ? true : false;
   }
 
