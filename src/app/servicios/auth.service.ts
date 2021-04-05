@@ -55,6 +55,7 @@ export class AuthService {
         up and returns promise */
         this.SetUserData(result.user);
         alert('Account creation succeed')
+        this.router.navigate(['']);
       }).catch((error:any) => {
         window.alert(error.message)
       })
