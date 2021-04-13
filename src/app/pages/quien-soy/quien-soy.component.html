@@ -1,1 +1,10 @@
-<p>quien-soy works!</p>
+
+<div class="row">
+    <div class="col-12" [class.d-none]="authService.isLoggedIn">
+        <h3>Usuario no logueado</h3>
+    </div>
+    <div class="col-12" [class.d-none]="!authService.isLoggedIn">
+        <h3>Usuario logeado</h3>
+        <h4>Email de usuario: {{email}}</h4>
+    </div>
+</div>

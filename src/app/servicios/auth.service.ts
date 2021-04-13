@@ -3,6 +3,7 @@ import { Usuario } from "../clases/usuario";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
+import { LoggerService } from './logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,15 @@ import { Router } from "@angular/router";
 
 export class AuthService {
   userData: any; // Save logged in user data
+  singUpError: string = '';
+  singInError: string = '';
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public ngZone: NgZone, // NgZone service to remove outside scope warning
+    public logger: LoggerService
   ) {
     /* Saving user data in localstorage when
     logged in and setting up null when logged out */
@@ -43,7 +47,8 @@ export class AuthService {
         });
         this.SetUserData(result.user);
       }).catch((error: any) => {
-        window.alert(error.message)
+        console.log(error);
+        this.singInError = error
       })
   }
 
@@ -57,7 +62,8 @@ export class AuthService {
         alert('Account creation succeed')
         this.router.navigate(['']);
       }).catch((error:any) => {
-        window.alert(error.message)
+        console.log(error);
+        this.singUpError = error
       })
   }
 
@@ -66,7 +72,7 @@ export class AuthService {
     const userData = localStorage.getItem('user')
     if (!userData) return false
     const user = JSON.parse(userData);
-    return (user !== null && user.emailVerified !== false) ? true : false;
+    return user !== null;
   }
 
   // Auth logic to run auth providers
@@ -78,7 +84,7 @@ export class AuthService {
         })
       this.SetUserData(result.user);
     }).catch((error: any) => {
-      window.alert(error)
+      this.singInError = error
     })
   }
 
@@ -94,6 +100,20 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
     }
+    const currentdate = new Date();
+    const datetime = "Created at: " + currentdate.getDate() + "/"
+                    + (currentdate.getMonth()+1)  + "/"
+                    + currentdate.getFullYear() + " @ "
+                    + currentdate.getHours() + ":"
+                    + currentdate.getMinutes() + ":"
+                    + currentdate.getSeconds();
+    this.logger.CreateLog({
+      activity: 'User creation',
+      user: userData,
+      date: datetime
+    })
+
+    localStorage.setItem('user', JSON.stringify(userData));
     return userRef.set(userData, {
       merge: true
     })
@@ -103,7 +123,10 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['login']);
+      console.log(
+        this.isLoggedIn
+      );
     })
   }
 

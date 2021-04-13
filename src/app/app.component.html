@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <a href="#" class="navbar-brand">Home</a>
     <div class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a routerLink="charla" class="nav-link">chat</a>
       </li>
       <li class="nav-item">
@@ -10,9 +10,12 @@
       </li>
       <li class="nav-item">
         <a routerLink="usuario" class="nav-link">Usuario</a>
-      </li>
-      <li class="nav-item">
+      </li> -->
+      <li class="nav-item" [class.d-none]="authService.isLoggedIn">
         <a routerLink="login" class="nav-link">Login</a>
+      </li>
+      <li class="nav-item" [class.d-none]="!authService.isLoggedIn">
+        <span class="nav-link link" (click)="authService.SignOut()">Logout</span>
       </li>
       <li class="nav-item">
         <a routerLink="quien-soy" class="nav-link">Quien soy?</a>
