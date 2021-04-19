@@ -12,17 +12,18 @@ export class MensajefireService {
 
   constructor(private bd: AngularFirestore) {
     this.referenciaAlaColeccion = bd.collection(this.rutaDeLaColeccion);
-
   }
 
-  Crear(mensaje:Mensaje):any
+  Crear(mensaje:Mensaje, juego:string):any
   {
-    return this.referenciaAlaColeccion.add({...mensaje});
+    const referenciaAlaColeccion = this.bd.collection(`/${juego}-chat/`);
+    return referenciaAlaColeccion.add({...mensaje});
   }
 
-  ObtenerTodos():AngularFirestoreCollection<Mensaje>
+  ObtenerTodos(juego:string): any
   {
-    return this.referenciaAlaColeccion;
+    const referenciaAlaColeccion: AngularFirestoreCollection<Mensaje> = this.bd.collection(`/${juego}-chat/`, ref => ref.orderBy('emision'));
+    return referenciaAlaColeccion
   }
 
   BorrarMensaje(id:any):Promise<void>

@@ -1,15 +1,18 @@
-  
+
 import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
 
-public usuarioVigente:string;
+  constructor(public authService: AuthService,) {
+  }
 
-  constructor() {
+  getUser(){
+    const userData = localStorage.getItem('user')
+    if (userData){ return JSON.parse(userData).email }
+  }
 
-    this.usuarioVigente = 'alguien';
-   }
 }

@@ -16,6 +16,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { AuthService } from "./servicios/auth.service";
+import { TatetiComponent } from './pages/juegos/tateti/tateti.component';
+import { PiedraPapelOTijeraComponent } from './pages/juegos/piedra-papel-o-tijera/piedra-papel-o-tijera.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -26,7 +29,10 @@ import { AuthService } from "./servicios/auth.service";
     UsuarioComponent,
     LoginComponent,
     HomeComponent,
-    QuienSoyComponent
+    QuienSoyComponent,
+    TatetiComponent,
+    PiedraPapelOTijeraComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

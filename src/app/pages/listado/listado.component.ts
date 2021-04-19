@@ -9,9 +9,9 @@ import { MensajefireService } from 'src/app/servicios/mensajefire.service';
 })
 export class ListadoComponent implements OnInit {
 
-  item$: Observable<any[]>;
+  // item$: Observable<any[]>;
   constructor(firestore: MensajefireService) {
-    this.item$ = firestore.ObtenerTodos().valueChanges();
+    // this.item$ = firestore.ObtenerTodos().valueChanges();
   }
 
   ngOnInit(): void {

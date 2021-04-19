@@ -10,20 +10,20 @@ export class UsuarioComponent implements OnInit {
 
   usuario: string = 'nadie';
 
-  constructor(private MiServicio:UsuariosService) 
+  constructor(private MiServicio:UsuariosService)
   {
-    console.log(MiServicio.usuarioVigente);
+    // console.log(MiServicio.usuarioVigente);
 
   }
 
   Guardar() {
 
-    this.MiServicio.usuarioVigente = this.usuario;
+    // this.MiServicio.usuarioVigente = this.usuario;
 
   }
 
   ngOnInit(): void {
-    this.usuario = this.MiServicio.usuarioVigente;
+    // this.usuario = this.MiServicio.usuarioVigente;
   }
 
 }

@@ -3,4 +3,5 @@ export class Mensaje {
     usuario: string = '';
     mensaje: string = '';
     estado: boolean = false;
+    emision: string = '';
 }

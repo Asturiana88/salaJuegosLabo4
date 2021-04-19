@@ -1,11 +1,19 @@
 
 <div class="row">
-    <div class="col-12">
+
+    <div class="col-12" [class.d-none]="!authService.isLoggedIn">
         <h3>Juegos</h3>
         <ul>
-            <li>Ta Te Ti!</li>
-            <li>Piedra, Papel o Tijeras</li>
-            <li>Memotest!</li>
+            <li>
+                <a routerLink="juegos/tateti" class="nav-link">
+                    Ta te ti!
+                </a>
+            </li>
+            <li>
+                <a routerLink="juegos/piedra-papel-o-tijera" class="nav-link">
+                    Piedra, Papel o Tijeras
+                </a>
+            </li>
         </ul>
     </div>
     <div class="col-12">

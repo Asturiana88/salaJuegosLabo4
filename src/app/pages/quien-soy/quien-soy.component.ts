@@ -16,7 +16,6 @@ export class QuienSoyComponent implements OnInit {
     const userData = localStorage.getItem('user')
     if (userData){ this.email = JSON.parse(userData).email }
     console.log(userData);
-
   }
 
   ngOnInit() {
